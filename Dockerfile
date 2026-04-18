@@ -15,9 +15,9 @@ FROM mcr.microsoft.com/dotnet/aspnet:10.0 AS runtime
 WORKDIR /app
 COPY --from=build /app/out .
 
-# Expose the port the app runs on (Render uses PORT env var)
-ENV ASPNETCORE_URLS=http://+:10000
-EXPOSE 10000
+# Expose the port the app runs on (Back4App uses 8080 by default)
+ENV ASPNETCORE_URLS=http://+:8080
+EXPOSE 8080
 
 # Start the app
 ENTRYPOINT ["dotnet", "backend.dll"]
