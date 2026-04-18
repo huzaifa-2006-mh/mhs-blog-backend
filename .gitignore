@@ -1,0 +1,9 @@
+bin/
+obj/
+*.user
+*.userosscache
+*.sln.docstates
+.vs/
+.history/
+.gemini/
+appsettings.Development.json
