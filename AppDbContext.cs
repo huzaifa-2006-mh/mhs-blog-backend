@@ -5,8 +5,10 @@ public class Blog
 {
     public int Id { get; set; }
     public string Title { get; set; } = string.Empty;
+    public string Excerpt { get; set; } = string.Empty;
     public string Category { get; set; } = string.Empty;
     public string Content { get; set; } = string.Empty;
+    public string Img { get; set; } = string.Empty; // Base64 or URL
     public int Views { get; set; }
     public DateTime DatePublished { get; set; } = DateTime.Now;
 }
