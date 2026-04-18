@@ -46,6 +46,23 @@ app.MapPost("/api/blogs", async (Blog blog, AppDbContext db) =>
     return Results.Created($"/api/blogs/{blog.Id}", blog);
 });
 
+app.MapGet("/api/blogs/{id}", async (int id, AppDbContext db) =>
+    await db.Blogs.FindAsync(id)
+        is Blog blog
+            ? Results.Ok(blog)
+            : Results.NotFound());
+
+app.MapDelete("/api/blogs/{id}", async (int id, AppDbContext db) =>
+{
+    if (await db.Blogs.FindAsync(id) is Blog blog)
+    {
+        db.Blogs.Remove(blog);
+        await db.SaveChangesAsync();
+        return Results.Ok(blog);
+    }
+    return Results.NotFound();
+});
+
 // API Endpoints for Dashboard Stats
 app.MapGet("/api/stats", async (AppDbContext db) =>
     await db.Stats.ToListAsync());
